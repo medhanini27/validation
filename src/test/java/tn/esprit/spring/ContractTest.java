@@ -37,6 +37,14 @@ public class ContractTest {
 		Contrat ContratAdded = us.addContract(c); 
 		assertEquals(c.getTypeContrat(), ContratAdded.getTypeContrat());
 	}
+	@Test
+	public void testdeleteUser() throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date d = dateFormat.parse("2015-03-23");
+		Contrat c=new Contrat(d,"temporaire",200);
+		Contrat ContratAdded = us.addContract(c); 
+		assertEquals(c.getTypeContrat(), ContratAdded.getTypeContrat());
+	}
 	
 	
 }
