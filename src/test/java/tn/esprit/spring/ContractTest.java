@@ -27,6 +27,7 @@ public class ContractTest {
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"temporaire",200);
 		Contrat ContratAdded = us.addContract(c); 
+		System.out.println("l'employe doit etre chef de departement pour valider une feuille de temps !");
 		assertEquals(c.getTypeContrat(), ContratAdded.getTypeContrat());
 	}
 	@Test
