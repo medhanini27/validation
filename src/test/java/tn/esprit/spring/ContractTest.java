@@ -50,9 +50,10 @@ public class ContractTest {
 		Contrat c=new Contrat(d,"temporaire",200);
 		us.addContract(c);
 		Contrat ContratRetrived = us.retrieveContrat(c.getReference());
-		ContratRetrived.setSalaire(123);
+		float salaire=123;
+		ContratRetrived.setSalaire(salaire);
 		Contrat ContratUpdated  = us.updateContrat(c); 
-		assertEquals(123, ContratUpdated.getSalaire());
+		assertEquals(salaire, ContratUpdated.getSalaire());
 	}
 	
 	@Test
