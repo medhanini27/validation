@@ -27,34 +27,34 @@ public class ContratServiceImpl implements IContratService {
 	
 	
 	@Override
-	public Contrat addContract(Contrat c) {
+	public Contrat addContrat(Contrat c) {
 		l.info("In  add contract : " + c); 
-		Contrat ContractSaved = null ;
+		Contrat ContratSaved = null ;
 		try {
-			 ContractSaved = contratRepository.save(c);
+			 ContratSaved = contratRepository.save(c);
 
 		}
 		catch (Exception e) {
 			l.error("erreur in adding contrat "+e);
 		}
 		l.info("Out of  add contract. "); 
-		return ContractSaved; 
+		return ContratSaved; 
 	}
 	
 	
 	@Override 
 	public Contrat updateContrat(Contrat c) {
 		l.info("In  update contract : " + c); 
-		Contrat ContractSaved = null ;
+		Contrat ContratSaved = null ;
 		try {
-			 ContractSaved = contratRepository.save(c);
+			 ContratSaved = contratRepository.save(c);
 
 		}
 		catch (Exception e) {
 			l.error("erreur in updating contrat "+e);
 		}
 		l.info("Out of  update contract. "); 
-		return ContractSaved; 
+		return ContratSaved; 
 	}
 
 	@Override
