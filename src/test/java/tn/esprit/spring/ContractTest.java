@@ -26,7 +26,7 @@ public class ContractTest {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"temporaire",200);
-		Contrat ContratAdded = us.addContract(c); 
+		Contrat ContratAdded = us.addContrat(c); 
 		assertEquals(c.getTypeContrat(), ContratAdded.getTypeContrat());
 	}
 
@@ -37,7 +37,7 @@ public class ContractTest {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"temporaire",200);
-		Contrat ContratAdded = us.addContract(c);
+		Contrat ContratAdded = us.addContrat(c);
 		Contrat ContratRetrived = us.retrieveContrat(c.getReference());
 		assertEquals(ContratAdded.getTypeContrat(), ContratRetrived.getTypeContrat());
 	}
@@ -48,7 +48,7 @@ public class ContractTest {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"full times",200);
-		Contrat ContratRetrived=us.addContract(c);
+		Contrat ContratRetrived=us.addContrat(c);
 		float salaire=123;
 		ContratRetrived.setSalaire(salaire);
 		Contrat ContratUpdated  = us.updateContrat(ContratRetrived); 
@@ -60,7 +60,7 @@ public class ContractTest {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"temporaire",200);
-		us.addContract(c);
+		us.addContrat(c);
 		
 		 us.deleteContrat(c.getReference());   
 		assertEquals(null, us.retrieveContrat(c.getReference()));
