@@ -47,13 +47,12 @@ public class ContractTest {
 	public void testModifyContrat() throws ParseException   {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
-		Contrat c=new Contrat(d,"temporaire",200);
-		us.addContract(c);
-		Contrat ContratRetrived = us.retrieveContrat(c.getReference());
+		Contrat c=new Contrat(d,"full times",200);
+		Contrat ContratRetrived=us.addContract(c);
 		float salaire=123;
 		ContratRetrived.setSalaire(salaire);
-		Contrat ContratUpdated  = us.updateContrat(c); 
-		assertEquals(salaire, ContratUpdated.getSalaire());
+		Contrat ContratUpdated  = us.updateContrat(ContratRetrived); 
+		assertEquals(salaire, ContratUpdated.getSalaire(),0.0);
 	}
 	
 	@Test
