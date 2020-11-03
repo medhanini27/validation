@@ -22,30 +22,51 @@ public class ContractTest {
 	IContratService us; 
 
 	@Test
-	public void testAddUser() throws ParseException {
+	public void testAddContrat() throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"temporaire",200);
 		Contrat ContratAdded = us.addContract(c); 
-		System.out.println("l'employe doit etre chef de departement pour valider une feuille de temps !");
 		assertEquals(c.getTypeContrat(), ContratAdded.getTypeContrat());
 	}
+
+	
+	
 	@Test
-	public void testupdateUser() throws ParseException {
+	public void testretriveContrat() throws ParseException   {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"temporaire",200);
-		Contrat ContratAdded = us.addContract(c); 
-		assertEquals(c.getTypeContrat(), ContratAdded.getTypeContrat());
+		Contrat ContratAdded = us.addContract(c);
+		Contrat ContratRetrived = us.retrieveContrat(c.getReference());
+		assertEquals(ContratAdded.getTypeContrat(), ContratRetrived.getTypeContrat());
 	}
+	
+
 	@Test
-	public void testdeleteUser() throws ParseException {
+	public void testModifyContrat() throws ParseException   {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("2015-03-23");
 		Contrat c=new Contrat(d,"temporaire",200);
-		Contrat ContratAdded = us.addContract(c); 
-		assertEquals(c.getTypeContrat(), ContratAdded.getTypeContrat());
+		us.addContract(c);
+		Contrat ContratRetrived = us.retrieveContrat(c.getReference());
+		ContratRetrived.setSalaire(123);
+		Contrat ContratUpdated  = us.updateContrat(c); 
+		assertEquals(123, ContratUpdated.getSalaire());
 	}
+	
+	@Test
+	public void testDeleteContrat() throws ParseException   {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date d = dateFormat.parse("2015-03-23");
+		Contrat c=new Contrat(d,"temporaire",200);
+		us.addContract(c);
+		
+		 us.deleteContrat(c.getReference());   
+		assertEquals(null, us.retrieveContrat(c.getReference()));
+	}
+	
+	
 	
 	
 }

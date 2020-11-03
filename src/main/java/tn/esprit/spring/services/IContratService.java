@@ -10,8 +10,9 @@ public interface IContratService {
 	
 	public List<Contrat> getAllContrats();
 	public Contrat addContract(Contrat c);
-
-	
+	public Contrat retrieveContrat(int id);
+	public void deleteContrat(int id);
+	public Contrat updateContrat(Contrat c);
 	
 	
 
