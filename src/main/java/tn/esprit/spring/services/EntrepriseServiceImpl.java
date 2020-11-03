@@ -12,17 +12,31 @@ import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EntrepriseRepository;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 @Service
 public class EntrepriseServiceImpl implements IEntrepriseService {
+
+	private static final Logger l = LogManager.getLogger(EntrepriseServiceImpl.class);
 
 	@Autowired
     EntrepriseRepository entrepriseRepoistory;
 	@Autowired
 	DepartementRepository deptRepoistory;
 	
-	public int ajouterEntreprise(Entreprise entreprise) {
-		entrepriseRepoistory.save(entreprise);
-		return entreprise.getId();
+	public Entreprise ajouterEntreprise(Entreprise entreprise) {
+		l.info("In  ajouter Entreprise : " + entreprise); 
+		Entreprise entrepriseSaved = null ;
+		try {
+			entrepriseSaved = entrepriseRepoistory.save(entreprise);
+
+		}
+		catch (Exception e) {
+			l.error("erreur in  ajouter Entreprise "+e);
+		}
+		l.info("Out of  ajouter Entreprise . "); 
+		return entrepriseSaved;
 	}
 
 	public int ajouterDepartement(Departement dep) {
@@ -56,6 +70,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 
 	@Transactional
 	public void deleteEntrepriseById(int entrepriseId) {
+		l.info("in  deleteEntrepriseById = " + entrepriseId);
 		entrepriseRepoistory.delete(entrepriseRepoistory.findById(entrepriseId).get());	
 	}
 
@@ -66,7 +81,11 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 
 
 	public Entreprise getEntrepriseById(int entrepriseId) {
-		return entrepriseRepoistory.findById(entrepriseId).get();	
+		l.info("in  getEntrepriseById = " + entrepriseId);
+		Entreprise e = entrepriseRepoistory.findById(entrepriseId).orElse(null);
+		l.info("out  getEntrepriseById = " + e);
+		return e;
+		
 	}
 
 }
